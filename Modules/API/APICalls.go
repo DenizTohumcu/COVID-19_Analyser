@@ -32,10 +32,11 @@ type RegionCases struct {
 type CountryCases struct {
 
 	// End points JSON file of the API
-	date      string `json:"date"`      // Date of information
-	confirmed int    `json:"confirmed"` // Number of confirmed cases in a country
-	deaths    int    `json:"deaths"`    // Number of deaths in a country per day
-	recovered int    `json:"recovered"` // Number of recovered in a country per
+	countryCode string `json:"countrycode"` // Date of information
+	date        string `json:"date"`        // Date of information
+	cases       int    `json:"cases"`       // Number of confirmed cases in a country
+	deaths      int    `json:"deaths"`      // Number of deaths in a country per day
+	recovered   int    `json:"recovered"`   // Number of recovered in a country per
 
 	// Data calculated from the grabbed data
 	closed             int //deaths + recovered // Number of closed cases in a country
