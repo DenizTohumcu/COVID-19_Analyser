@@ -13,7 +13,7 @@ import (
 
 // *************** Global Variables *****************
 
-var url string = "https://pomber.github.io/covid19/timeseries.json"
+var url = "https://pomber.github.io/covid19/timeseries.json"
 
 // *************** Type Declarations *****************
 
@@ -79,4 +79,14 @@ func grabInformation(countryName string, dateGiven string) cases { // gives info
 	}
 
 	return situation
+}
+
+func APIAvaibility() bool {
+	response, err := http.Get("https://pomber.github.io/covid19/timeseries.json")
+
+	if err == nil && response != nil {
+		return true
+	} else {
+		return false
+	}
 }
