@@ -81,12 +81,12 @@ func grabInformation(countryName string, dateGiven string) cases { // gives info
 	return situation
 }
 
-func APIAvaibility() bool {
+func APIAvaibility() (bool, *http.Response) {
 	response, err := http.Get("https://pomber.github.io/covid19/timeseries.json")
 
 	if err == nil && response != nil {
-		return true
+		return true, response
 	} else {
-		return false
+		return false, _
 	}
 }
