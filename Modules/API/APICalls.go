@@ -47,10 +47,10 @@ func Avaibility(url string) (bool, *http.Response) { // Returns true if API is
 	}
 }
 
-func ReadBody(response *http.Response) []byte {
+func ReadBody(response *http.Response) string {
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return data
+	return string(data)
 }
