@@ -7,5 +7,5 @@ import (
 
 func main() {
 	API.HelloFunc()
-	fmt.Println(API.APIAvaibility())
+	fmt.Println(API.APIAvaibility("https://pomber.github.io/covid19/timeseries.json"))
 }

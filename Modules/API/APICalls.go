@@ -13,8 +13,6 @@ import (
 
 // *************** Global Variables *****************
 
-var url = "https://pomber.github.io/covid19/timeseries.json"
-
 // *************** Type Declarations *****************
 
 type cases struct {
@@ -40,7 +38,7 @@ func HelloFunc() { // Hello initialisation function
 	fmt.Println("Hello API!")
 }
 
-func grabInformation(countryName string, dateGiven string) cases { // gives information about cases for requested
+/*func grabInformation(countryName string, dateGiven string) cases { // gives information about cases for requested
 	// country and date.
 	spaceClient := http.Client{
 		Timeout: time.Second * 2, // Max of 2 secss
@@ -79,14 +77,19 @@ func grabInformation(countryName string, dateGiven string) cases { // gives info
 	}
 
 	return situation
-}
+}*/
 
-func APIAvaibility() (bool, *http.Response) {
-	response, err := http.Get("https://pomber.github.io/covid19/timeseries.json")
+func APIAvaibility(url string) (bool, *http.Response) { // Returns true if API is
+	response, err := http.Get(url)
 
 	if err == nil && response != nil {
 		return true, response
 	} else {
 		return false, _
 	}
+}
+
+func ReadBody(response *http.Response) []byte {
+	data, _ := ioutil.ReadAll(response.Body)
+	return data
 }
