@@ -1,12 +1,10 @@
 package API
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 )
 
 // This Package is made for API request and JSON parsing.
@@ -38,58 +36,21 @@ func HelloFunc() { // Hello initialisation function
 	fmt.Println("Hello API!")
 }
 
-/*func grabInformation(countryName string, dateGiven string) cases { // gives information about cases for requested
-	// country and date.
-	spaceClient := http.Client{
-		Timeout: time.Second * 2, // Max of 2 secss
-	}
-
-	req, err := http.NewRequest(http.MethodGet, url, nil)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	req.Header.Set("User-Agent", "COVID-19_Analyser")
-
-	res, getErr := spaceClient.Do(req)
-
-	if getErr != nil {
-		log.Fatal(getErr)
-	}
-
-	body, readErr := ioutil.ReadAll(res.Body)
-
-	if readErr != nil {
-		log.Fatal(readErr)
-	}
-
-	if body != nil {
-		log.Fatal("Value of body is nil!")
-	}
-
-	situation := cases{}
-
-	jsonError := json.Unmarshal(body, &situation)
-
-	if jsonError != nil {
-		log.Fatal(jsonError)
-	}
-
-	return situation
-}*/
-
-func APIAvaibility(url string) (bool, *http.Response) { // Returns true if API is
+func Avaibility(url string) (bool, *http.Response) { // Returns true if API is
 	response, err := http.Get(url)
 
 	if err == nil && response != nil {
 		return true, response
 	} else {
-		return false, _
+		log.Fatal(err)
+		return false, response
 	}
 }
 
 func ReadBody(response *http.Response) []byte {
-	data, _ := ioutil.ReadAll(response.Body)
+	data, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return data
 }

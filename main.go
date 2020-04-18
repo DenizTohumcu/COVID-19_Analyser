@@ -7,5 +7,8 @@ import (
 
 func main() {
 	API.HelloFunc()
-	fmt.Println(API.APIAvaibility("https://pomber.github.io/covid19/timeseries.json"))
+	token, response := API.Avaibility("https://api.thevirustracker.com/free-api?global=stats")
+	fmt.Println(token)
+	fmt.Println(API.ReadBody(response))
+
 }
