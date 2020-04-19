@@ -1,4 +1,4 @@
-package API
+package Constants_and_Structs
 
 // **************************** URL API Adresses *********************************
 

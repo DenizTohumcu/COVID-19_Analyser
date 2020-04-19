@@ -8,6 +8,7 @@ import (
 )
 
 // This Package is made for API request and JSON parsing.
+// We want to get more functions in order to make it easy to use for future work.
 
 // *************** Global Variables *****************
 
@@ -27,9 +28,6 @@ type WorldCases struct {
 
 }
 
-type RegionCases struct {
-}
-
 type CountryCases struct {
 
 	// End points JSON file of the API
@@ -42,14 +40,15 @@ type CountryCases struct {
 	// Data calculated from the grabbed data
 	closed             int //deaths + recovered // Number of closed cases in a country
 	active             int //confirmed - closed // Number of active cases in a country
-	deathPercentage    int //deaths/closed // Percentage of death in a country
-	recoveryPercentage int //recovered/closed // Percentage of recovery in a country
-	activePercentage   int //active/confirmed // Percentage of active cases in a country
-	closedPercentage   int //closed/confirmed // Percentage of closed cases in a country
+	deathPercentage    int //deaths/closed      // Percentage of death in a country
+	recoveryPercentage int //recovered/closed   // Percentage of recovery in a country
+	activePercentage   int //active/confirmed   // Percentage of active cases in a country
+	closedPercentage   int //closed/confirmed   // Percentage of closed cases in a country
 
 }
 
 // *************** Function Declarations *******************
+
 func HelloFunc() { // Hello initialisation function
 	fmt.Println("Hello API!")
 }
@@ -65,7 +64,7 @@ func Avaibility(url string) (bool, *http.Response) { // Returns true if API is
 	}
 }
 
-func ReadBody(response *http.Response) string {
+func ReadBody(response *http.Response) string { // Reads and gives you body as string
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
