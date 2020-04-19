@@ -24,6 +24,7 @@ type WorldCases struct {
 	totalActiveCases       int `json:"total_active_cases"`       // Total active cases in the world
 	totalSeriousCases      int `json:"total_serious_cases"`      // Total serious cases in the world
 	totalAffectedCountries int `json:"total_affected_countries"` // Total affected cases in the world
+
 }
 
 type RegionCases struct {
