@@ -8,8 +8,8 @@ import (
 // ***************** Test functions ********************
 
 func TestAvaibility(t *testing.T) {
-	token, _ := API.Avaibility("https://thevirustracker.com/timeline/map-data.json")
-	if token != true {
+	token, response := API.Avaibility("https://thevirustracker.com/timeline/map-data.json")
+	if token != true && response.Status != "Accepted" {
 		t.Errorf("Sum was incorrect, got: %t, want: %t.", token, true)
 	}
 }
