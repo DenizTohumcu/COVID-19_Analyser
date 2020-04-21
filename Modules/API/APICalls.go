@@ -53,7 +53,7 @@ func HelloFunc() { // Hello initialisation function
 	fmt.Println("Hello API!")
 }
 
-func Avaibility(url string) (bool, *http.Response) { // Returns true if API is
+func Availability(url string) (bool, *http.Response) { // Returns true if API is
 	response, err := http.Get(url)
 
 	if err == nil && response != nil {

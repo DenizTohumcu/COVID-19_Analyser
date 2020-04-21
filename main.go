@@ -7,7 +7,7 @@ import (
 
 func main() {
 	API.HelloFunc()
-	token, response := API.Avaibility("https://thevirustracker.com/timeline/map-data.json")
+	token, response := API.Availability("https://thevirustracker.com/timeline/map-data.json")
 	fmt.Println(token)
 	fmt.Println(API.ReadBody(response))
 }
