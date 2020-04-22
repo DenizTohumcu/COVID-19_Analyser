@@ -1,8 +1,9 @@
 package main
 
 import (
-	"COVID-19_Analyser/Modules/API"
 	"fmt"
+
+	API "./Modules/API"
 )
 
 func main() {
