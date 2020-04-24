@@ -44,14 +44,12 @@ type CountryCalculatedValues struct {
 type WorldCalculatedValues struct {
 
 	// Data calculated from the grabbed data with WorldCases object
-	totalRecoveredPercentage  int // totalRecovered/totalCases                // Percentage of recovery in the world
-	totalUnresolvedPercentage int // totalUnresolved/totalCases               // Percentage of death in the world
-	totalClosed               int // totalCases - activeCases                 // Number of closed cases
-	totalDeathsPercentage     int // totalDeaths/totalClosed                  // Percentage of deaths over closed
-	// cases
+	totalRecoveredPercentage    int // totalRecovered/totalCases                // Percentage of recovery in the World
+	totalUnresolvedPercentage   int // totalUnresolved/totalCases               // Percentage of death "
+	totalClosed                 int // totalCases - activeCases                 // Number of closed cases "
+	totalDeathsPercentage       int // totalDeaths/totalClosed                  // Percentage of deaths over closed "
 	totalDeficit                int // totalNewCasesToday - totalNewDeathsToday // Value that show the change in trends
-	totalSeriousCasesPercentage int // totalSeriousCases/totalActiveCases       // Percentage of Serious cases in the
-	// world
-	totalActiveCasesPercentage int // totalActiveCases/totalCases              // Percentage of active cases in the
-	// world
+	totalSeriousCasesPercentage int // totalSeriousCases/totalActiveCases       // Percentage of Serious cases "
+	totalActiveCasesPercentage  int // totalActiveCases/totalCases              // Percentage of active cases "
+
 }
