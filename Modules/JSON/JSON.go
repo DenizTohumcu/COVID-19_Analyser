@@ -1,5 +1,10 @@
 package JSON
 
+import (
+	"encoding/json"
+	"log"
+)
+
 // This module contains functions to parse and give demanded JSON files
 
 // *************** Type Declarations *****************
@@ -56,6 +61,12 @@ type WorldCalculatedValues struct {
 
 // *************** Function Declarations *******************
 
-func UnMarshall() {
+func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with err handling
 
+	err := json.Unmarshal(body, key)
+	if err != nil {
+		log.Fatal("Decoding error: ", err)
+	}
+
+	return key
 }
