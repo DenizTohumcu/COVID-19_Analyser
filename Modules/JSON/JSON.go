@@ -61,6 +61,8 @@ type WorldCalculatedValues struct {
 
 // *************** Function Declarations *******************
 
+// ######## JSON related functions #########
+
 func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with err handling
 
 	err := json.Unmarshal(body, key)
@@ -69,4 +71,19 @@ func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with
 	}
 
 	return key
+}
+
+// ######## Information handling function ########
+
+func CountryCalculator(country CountryCases) CountryCalculatedValues {
+
+	closed := country.deaths + country.recovered
+	active := country.cases - closed
+	deathPercentage := (country.deaths / closed) * 100
+	recoveryPercentage := (country.recovered / closed) * 100
+	activePercentage := (active / country.cases) * 100
+	closedPercentage := (closed / country.cases) * 100
+
+	return CountryCalculatedValues{closed, active, deathPercentage,
+		recoveryPercentage, activePercentage, closedPercentage}
 }
