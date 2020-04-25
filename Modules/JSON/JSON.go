@@ -75,8 +75,8 @@ func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with
 
 // ######## Information handling function ########
 
-func CountryCalculator(country CountryCases) CountryCalculatedValues {
-
+func CountryCalculator(country CountryCases) CountryCalculatedValues { // Calculates the given values by the API for
+	// each country
 	closed := country.deaths + country.recovered
 	active := country.cases - closed
 	deathPercentage := (country.deaths / closed) * 100
@@ -86,4 +86,20 @@ func CountryCalculator(country CountryCases) CountryCalculatedValues {
 
 	return CountryCalculatedValues{closed, active, deathPercentage,
 		recoveryPercentage, activePercentage, closedPercentage}
+}
+
+func WorldCalculator(world WorldCases) WorldCalculatedValues { //Calculates the given values by the API for the world
+
+	totalRecoveredPercentage := (world.totalRecovered / world.totalCases) * 100
+	totalUnresolvedPercentage := (world.totalUnresolved / world.totalCases) * 100
+	totalClosed := world.totalCases - world.totalUnresolved
+	totalDeathsPercentage := (world.totalDeaths / totalClosed) * 100
+	totalDeficit := world.totalNewCasesToday - world.totalNewDeathsToday
+	totalSeriousCasesPercentage := world.totalSeriousCases / world.totalActiveCases
+	totalActiveCasesPercentage := world.totalActiveCases / world.totalCases
+
+	return WorldCalculatedValues{totalRecoveredPercentage,
+		totalUnresolvedPercentage, totalClosed,
+		totalDeathsPercentage, totalDeficit,
+		totalSeriousCasesPercentage, totalActiveCasesPercentage}
 }
