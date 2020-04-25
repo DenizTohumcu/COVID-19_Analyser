@@ -73,6 +73,38 @@ func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with
 	return key
 }
 
+// ######## Endpoint getter function ########
+
+func EndpointGet(Name string, body []byte) interface{} {
+
+	if Name == "World" || Name == "WorldCases" {
+		object := WorldCases{}
+		UnMarshal(body, object.totalCases)
+		UnMarshal(body, object.totalRecovered)
+		UnMarshal(body, object.totalUnresolved)
+		UnMarshal(body, object.totalDeaths)
+		UnMarshal(body, object.totalNewCasesToday)
+		UnMarshal(body, object.totalNewDeathsToday)
+		UnMarshal(body, object.totalActiveCases)
+		UnMarshal(body, object.totalSeriousCases)
+		UnMarshal(body, object.totalAffectedCountries)
+		return object
+	} else if Name == "Country" || Name == "CountryCases" {
+		object := CountryCases{}
+		UnMarshal(body, object.countryCode)
+		UnMarshal(body, object.date)
+		UnMarshal(body, object.cases)
+		UnMarshal(body, object.deaths)
+		UnMarshal(body, object.recovered)
+
+		return object
+	} else {
+		log.Fatal("Constructor error: given name is not found")
+		return "Given name is not found : JSON.go -> line 103 "
+	}
+
+}
+
 // ######## Information handling function ########
 
 func CountryCalculator(country CountryCases) CountryCalculatedValues { // Calculates the given values by the API for
