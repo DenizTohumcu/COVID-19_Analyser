@@ -27,10 +27,18 @@ func Availability(url string) (bool, *http.Response) { // Returns true if API is
 	}
 }
 
-func ReadBody(response *http.Response) string { // Reads and gives you body as string
-	data, err := ioutil.ReadAll(response.Body)
+func ReadBody(response *http.Response, typeGiven string) interface{} { // Reads and gives you body as string
+	data, err := ioutil.ReadAll(response.Body) // gets the body from the API
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(data)
+
+	switch typeGiven { // Determines the return type of the body
+	case "string":
+		return string(data)
+	case "JSON":
+		return data
+	default:
+		return data
+	}
 }

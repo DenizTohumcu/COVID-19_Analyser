@@ -53,3 +53,9 @@ type WorldCalculatedValues struct {
 	totalActiveCasesPercentage  int // totalActiveCases/totalCases              // Percentage of active cases "
 
 }
+
+// *************** Function Declarations *******************
+
+func UnMarshall() {
+
+}
