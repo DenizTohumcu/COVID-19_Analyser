@@ -63,7 +63,7 @@ type WorldCalculatedValues struct {
 
 // ######## JSON related functions #########
 
-func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with err handling
+func UnMarshalCases(body []byte, key interface{}) interface{} { //json unmarshal with err handling
 
 	err := json.Unmarshal(body, key)
 	if err != nil {
@@ -75,27 +75,27 @@ func UnMarshal(body []byte, key interface{}) interface{} { //json unmarshal with
 
 // ######## Endpoint getter function ########
 
-func EndpointGet(Name string, body []byte) interface{} {
+func EndPointGet(Name string, body []byte) interface{} { // Gets the end point values and
 
 	if Name == "World" || Name == "WorldCases" {
 		object := WorldCases{}
-		UnMarshal(body, object.totalCases)
-		UnMarshal(body, object.totalRecovered)
-		UnMarshal(body, object.totalUnresolved)
-		UnMarshal(body, object.totalDeaths)
-		UnMarshal(body, object.totalNewCasesToday)
-		UnMarshal(body, object.totalNewDeathsToday)
-		UnMarshal(body, object.totalActiveCases)
-		UnMarshal(body, object.totalSeriousCases)
-		UnMarshal(body, object.totalAffectedCountries)
+		UnMarshalCases(body, object.totalCases)
+		UnMarshalCases(body, object.totalRecovered)
+		UnMarshalCases(body, object.totalUnresolved)
+		UnMarshalCases(body, object.totalDeaths)
+		UnMarshalCases(body, object.totalNewCasesToday)
+		UnMarshalCases(body, object.totalNewDeathsToday)
+		UnMarshalCases(body, object.totalActiveCases)
+		UnMarshalCases(body, object.totalSeriousCases)
+		UnMarshalCases(body, object.totalAffectedCountries)
 		return object
 	} else if Name == "Country" || Name == "CountryCases" {
 		object := CountryCases{}
-		UnMarshal(body, object.countryCode)
-		UnMarshal(body, object.date)
-		UnMarshal(body, object.cases)
-		UnMarshal(body, object.deaths)
-		UnMarshal(body, object.recovered)
+		UnMarshalCases(body, object.countryCode)
+		UnMarshalCases(body, object.date)
+		UnMarshalCases(body, object.cases)
+		UnMarshalCases(body, object.deaths)
+		UnMarshalCases(body, object.recovered)
 
 		return object
 	} else {

@@ -17,8 +17,7 @@ func TestAvailability(t *testing.T) { // Testing the Availability function from 
 func TestReadbody(t *testing.T) { // Testing for body reading function
 	token, response := API.Availability("https://thevirustracker.com/timeline/map-data.json")
 
-	if API.ReadBody(response, "string") != "" && token != true { // Waiting for non-empty string and true
+	if API.ReadBody(response) != nil && token != true { // Waiting for non-empty string and true
 		t.Errorf("The body is empty.")
-
 	}
 }
