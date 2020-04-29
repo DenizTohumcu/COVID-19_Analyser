@@ -2,6 +2,7 @@ package JSON
 
 import (
 	"encoding/json"
+	"errors"
 	"log"
 )
 
@@ -61,46 +62,34 @@ type WorldCalculatedValues struct {
 
 // *************** Function Declarations *******************
 
-// ######## JSON related functions #########
-
-func UnMarshalCases(body []byte, key interface{}) interface{} { //json unmarshal with err handling
-
-	err := json.Unmarshal(body, key)
-	if err != nil {
-		log.Fatal("Decoding error: ", err)
-	}
-
-	return key
-}
-
 // ######## Endpoint getter function ########
 
-func EndPointGet(Name string, body []byte) interface{} { // Gets the end point values and
+func EndPointGet(Name string, body []byte) (interface{}, error) { // Gets the end point values and
 
 	if Name == "World" || Name == "WorldCases" {
 		object := WorldCases{}
-		UnMarshalCases(body, object.totalCases)
-		UnMarshalCases(body, object.totalRecovered)
-		UnMarshalCases(body, object.totalUnresolved)
-		UnMarshalCases(body, object.totalDeaths)
-		UnMarshalCases(body, object.totalNewCasesToday)
-		UnMarshalCases(body, object.totalNewDeathsToday)
-		UnMarshalCases(body, object.totalActiveCases)
-		UnMarshalCases(body, object.totalSeriousCases)
-		UnMarshalCases(body, object.totalAffectedCountries)
-		return object
+		json.Unmarshal(body, &object.totalCases)
+		json.Unmarshal(body, &object.totalRecovered)
+		json.Unmarshal(body, &object.totalUnresolved)
+		json.Unmarshal(body, &object.totalDeaths)
+		json.Unmarshal(body, &object.totalNewCasesToday)
+		json.Unmarshal(body, &object.totalNewDeathsToday)
+		json.Unmarshal(body, &object.totalActiveCases)
+		json.Unmarshal(body, &object.totalSeriousCases)
+		json.Unmarshal(body, &object.totalAffectedCountries)
+		return object, nil
 	} else if Name == "Country" || Name == "CountryCases" {
 		object := CountryCases{}
-		UnMarshalCases(body, object.countryCode)
-		UnMarshalCases(body, object.date)
-		UnMarshalCases(body, object.cases)
-		UnMarshalCases(body, object.deaths)
-		UnMarshalCases(body, object.recovered)
+		json.Unmarshal(body, &object.countryCode)
+		json.Unmarshal(body, &object.date)
+		json.Unmarshal(body, &object.cases)
+		json.Unmarshal(body, &object.deaths)
+		json.Unmarshal(body, &object.recovered)
 
-		return object
+		return object, nil
 	} else {
 		log.Fatal("Constructor error: given name is not found")
-		return "Given name is not found : JSON.go -> line 103 "
+		return "Given name is not found : JSON.go -> line 103 ", errors.New("Given name is not found : JSON.go -> line 103 ")
 	}
 
 }

@@ -10,4 +10,5 @@ func main() {
 	token, response := API.Availability("https://thevirustracker.com/timeline/map-data.json")
 	fmt.Println(token)
 	fmt.Println(API.ReadBody(response))
+
 }

@@ -4,6 +4,7 @@ import (
 	"COVID-19_Analyser/Modules/API"
 	"COVID-19_Analyser/Modules/API/Constants_and_Structs"
 	"COVID-19_Analyser/Modules/JSON"
+	"fmt"
 	"testing"
 )
 
@@ -17,15 +18,16 @@ var target Constants_and_Structs.URL
 
 // ***************** Test functions ********************
 
-func TestUnMarshalCases(t *testing.T) { // Testing the UnMarshal function from JSON package
-	_, response := API.Availability(target.WorldTotals)
-	body := API.ReadBody(response, "data")
-	JSON.UnMarshalCases(body, &TestWorld)
-
-}
-
 func TestEndPointGet(t *testing.T) { // Testing the EndPointGet function from JSON package
-
+	_, response := API.Availability(target.WorldTotals)
+	println(response)
+	body := API.ReadBody(response)
+	println(string(body))
+	_, err := JSON.EndPointGet("World", body)
+	fmt.Println(TestWorld)
+	if err != nil {
+		t.Error(err)
+	}
 }
 
 func TestCountryCalculator(t *testing.T) { // Testing the CountryCalculator function from JSON package
