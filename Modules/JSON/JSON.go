@@ -51,28 +51,28 @@ type CountryCases struct {
 type CountryCalculatedValues struct {
 
 	// Data calculated from the grabbed data with CountryCases object
-	totalClosed int // deaths + recovered // Number of closed cases in a country
+	TotalClosed int // deaths + recovered // Number of closed cases in a country
 	//active                    int // confirmed - closed // Number of active cases in a country
-	totalDeathPercentage        int // deaths/closed      // Percentage of death in a country
-	totalRecoveryPercentage     int // recovered/closed   // Percentage of recovery in a country
-	totalActivePercentage       int // active/confirmed   // Percentage of active cases in a country
-	totalClosedPercentage       int // closed/confirmed   // Percentage of closed cases in a country
-	totalDeficit                int // totalNewCasesToday - totalNewDeathsToday // Value that show the change in trends
-	totalSeriousCasesPercentage int // totalSeriousCases/totalActiveCases       // Percentage of Serious cases "
-	totalActiveCasesPercentage  int // totalActiveCases/totalCases              // Percentage of active cases "
+	TotalDeathPercentage        int // deaths/closed      // Percentage of death in a country
+	TotalRecoveryPercentage     int // recovered/closed   // Percentage of recovery in a country
+	TotalActivePercentage       int // active/confirmed   // Percentage of active cases in a country
+	TotalClosedPercentage       int // closed/confirmed   // Percentage of closed cases in a country
+	TotalDeficit                int // totalNewCasesToday - totalNewDeathsToday // Value that show the change in trends
+	TotalSeriousCasesPercentage int // totalSeriousCases/totalActiveCases       // Percentage of Serious cases "
+	TotalActiveCasesPercentage  int // totalActiveCases/totalCases              // Percentage of active cases "
 }
 
 type WorldCalculatedValues struct {
 
 	// Data calculated from the grabbed data with WorldCases object
-	totalRecoveredPercentage    int // totalRecovered/totalCases                // Percentage of recovery in the World
-	totalUnresolvedPercentage   int // totalUnresolved/totalCases               // Percentage of death "
-	totalClosed                 int // totalCases - activeCases                 // Number of closed cases "
-	totalDeathsPercentage       int // totalDeaths/totalClosed                  // Percentage of deaths over closed "
-	totalActivePercentage       int // active/confirmed                         // Percentage of active cases "
-	totalClosedPercentage       int // closed/confirmed                         // Percentage of closed cases "
-	totalDeficit                int // totalNewCasesToday - totalNewDeathsToday // Value that show the change in trends
-	totalSeriousCasesPercentage int // totalSeriousCases/totalActiveCases       // Percentage of Serious cases "
+	TotalRecoveredPercentage    int // totalRecovered/totalCases                // Percentage of recovery in the World
+	TotalUnresolvedPercentage   int // totalUnresolved/totalCases               // Percentage of death "
+	TotalClosed                 int // totalCases - activeCases                 // Number of closed cases "
+	TotalDeathsPercentage       int // totalDeaths/totalClosed                  // Percentage of deaths over closed "
+	TotalActivePercentage       int // active/confirmed                         // Percentage of active cases "
+	TotalClosedPercentage       int // closed/confirmed                         // Percentage of closed cases "
+	TotalDeficit                int // totalNewCasesToday - totalNewDeathsToday // Value that show the change in trends
+	TotalSeriousCasesPercentage int // totalSeriousCases/totalActiveCases       // Percentage of Serious cases "
 
 }
 
@@ -87,16 +87,7 @@ func EndPointGetWorld(body []byte) WorldCases { // Gets the end point values and
 	if err != nil {
 		log.Fatal(err)
 	}
-	/*json.Unmarshal(body, &object.Results[0].TotalCases)
-	json.Unmarshal(body, &object.Results[0].TotalRecovered)
-	json.Unmarshal(body, &object.Results[0].TotalUnresolved)
-	json.Unmarshal(body, &object.Results[0].TotalDeaths)
-	json.Unmarshal(body, &object.Results[0].TotalNewCasesToday)
-	json.Unmarshal(body, &object.Results[0].TotalNewDeathsToday)
-	json.Unmarshal(body, &object.Results[0].TotalActiveCases)
-	json.Unmarshal(body, &object.Results[0].TotalSeriousCases)
-	json.Unmarshal(body, &object.Results[0].TotalAffectedCountries)
-	*/
+
 	return object
 }
 
@@ -107,17 +98,7 @@ func EndPointGetCountry(body []byte) CountryCases {
 	if err != nil {
 		log.Fatal(err)
 	}
-	/*json.Unmarshal(body, &object.Countrydata[0].Info.Title)
-	json.Unmarshal(body, &object.Countrydata[0].TotalCases)
-	json.Unmarshal(body, &object.Countrydata[0].TotalRecovered)
-	json.Unmarshal(body, &object.Countrydata[0].TotalUnresolved)
-	json.Unmarshal(body, &object.Countrydata[0].TotalDeaths)
-	json.Unmarshal(body, &object.Countrydata[0].TotalNewCasesToday)
-	json.Unmarshal(body, &object.Countrydata[0].TotalNewDeathsToday)
-	json.Unmarshal(body, &object.Countrydata[0].TotalActiveCases)
-	json.Unmarshal(body, &object.Countrydata[0].TotalSeriousCases)
-	json.Unmarshal(body, &object.Countrydata[0].TotalDangerRank)
-	*/
+
 	return object
 
 }
@@ -149,8 +130,8 @@ func WorldCalculator(world WorldCases) WorldCalculatedValues { //Calculates the 
 	totalDeathsPercentage := (world.Results[0].TotalDeaths / totalClosed) * 100
 	totalActivePercentage := (world.Results[0].TotalActiveCases / world.Results[0].TotalCases) * 100
 	totalClosedPercentage := (totalClosed / world.Results[0].TotalCases) * 100
-	totalDeficit := world.Results[1].TotalNewCasesToday - world.Results[1].TotalNewDeathsToday
-	totalSeriousCasesPercentage := (world.Results[1].TotalSeriousCases / world.Results[1].TotalActiveCases) * 100
+	totalDeficit := world.Results[0].TotalNewCasesToday - world.Results[0].TotalNewDeathsToday
+	totalSeriousCasesPercentage := (world.Results[0].TotalSeriousCases / world.Results[0].TotalActiveCases) * 100
 
 	return WorldCalculatedValues{totalRecoveredPercentage,
 		totalUnresolvedPercentage, totalClosed,
