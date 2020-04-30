@@ -2,6 +2,7 @@ package JSON
 
 import (
 	"encoding/json"
+	"log"
 )
 
 // This module contains functions to parse and give demanded JSON files
@@ -83,7 +84,11 @@ func EndPointGet(Name string, body []byte) interface{} { // Gets the end point v
 
 	if Name == "World" || Name == "WorldCases" {
 		object := WorldCases{}
-		json.Unmarshal(body, &object.Results[0].TotalCases)
+		err := json.Unmarshal(body, &object)
+		if err != nil {
+			log.Fatal(err)
+		}
+		/*json.Unmarshal(body, &object.Results[0].TotalCases)
 		json.Unmarshal(body, &object.Results[0].TotalRecovered)
 		json.Unmarshal(body, &object.Results[0].TotalUnresolved)
 		json.Unmarshal(body, &object.Results[0].TotalDeaths)
@@ -92,10 +97,16 @@ func EndPointGet(Name string, body []byte) interface{} { // Gets the end point v
 		json.Unmarshal(body, &object.Results[0].TotalActiveCases)
 		json.Unmarshal(body, &object.Results[0].TotalSeriousCases)
 		json.Unmarshal(body, &object.Results[0].TotalAffectedCountries)
+		*/
 		return object
+
 	} else if Name == "Country" || Name == "CountryCases" {
 		object := CountryCases{}
-		json.Unmarshal(body, &object.Countrydata[0].Info.Title)
+		err := json.Unmarshal(body, &object)
+		if err != nil {
+			log.Fatal(err)
+		}
+		/*json.Unmarshal(body, &object.Countrydata[0].Info.Title)
 		json.Unmarshal(body, &object.Countrydata[0].TotalCases)
 		json.Unmarshal(body, &object.Countrydata[0].TotalRecovered)
 		json.Unmarshal(body, &object.Countrydata[0].TotalUnresolved)
@@ -105,7 +116,7 @@ func EndPointGet(Name string, body []byte) interface{} { // Gets the end point v
 		json.Unmarshal(body, &object.Countrydata[0].TotalActiveCases)
 		json.Unmarshal(body, &object.Countrydata[0].TotalSeriousCases)
 		json.Unmarshal(body, &object.Countrydata[0].TotalDangerRank)
-
+		*/
 		return object
 	} else {
 		return nil
