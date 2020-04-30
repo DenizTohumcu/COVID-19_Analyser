@@ -80,47 +80,46 @@ type WorldCalculatedValues struct {
 
 // ######## Endpoint getter function ########
 
-func EndPointGet(Name string, body []byte) interface{} { // Gets the end point values and
+func EndPointGetWorld(body []byte) WorldCases { // Gets the end point values and
 
-	if Name == "World" || Name == "WorldCases" {
-		object := WorldCases{}
-		err := json.Unmarshal(body, &object)
-		if err != nil {
-			log.Fatal(err)
-		}
-		/*json.Unmarshal(body, &object.Results[0].TotalCases)
-		json.Unmarshal(body, &object.Results[0].TotalRecovered)
-		json.Unmarshal(body, &object.Results[0].TotalUnresolved)
-		json.Unmarshal(body, &object.Results[0].TotalDeaths)
-		json.Unmarshal(body, &object.Results[0].TotalNewCasesToday)
-		json.Unmarshal(body, &object.Results[0].TotalNewDeathsToday)
-		json.Unmarshal(body, &object.Results[0].TotalActiveCases)
-		json.Unmarshal(body, &object.Results[0].TotalSeriousCases)
-		json.Unmarshal(body, &object.Results[0].TotalAffectedCountries)
-		*/
-		return object
-
-	} else if Name == "Country" || Name == "CountryCases" {
-		object := CountryCases{}
-		err := json.Unmarshal(body, &object)
-		if err != nil {
-			log.Fatal(err)
-		}
-		/*json.Unmarshal(body, &object.Countrydata[0].Info.Title)
-		json.Unmarshal(body, &object.Countrydata[0].TotalCases)
-		json.Unmarshal(body, &object.Countrydata[0].TotalRecovered)
-		json.Unmarshal(body, &object.Countrydata[0].TotalUnresolved)
-		json.Unmarshal(body, &object.Countrydata[0].TotalDeaths)
-		json.Unmarshal(body, &object.Countrydata[0].TotalNewCasesToday)
-		json.Unmarshal(body, &object.Countrydata[0].TotalNewDeathsToday)
-		json.Unmarshal(body, &object.Countrydata[0].TotalActiveCases)
-		json.Unmarshal(body, &object.Countrydata[0].TotalSeriousCases)
-		json.Unmarshal(body, &object.Countrydata[0].TotalDangerRank)
-		*/
-		return object
-	} else {
-		return nil
+	object := WorldCases{}
+	err := json.Unmarshal(body, &object)
+	if err != nil {
+		log.Fatal(err)
 	}
+	/*json.Unmarshal(body, &object.Results[0].TotalCases)
+	json.Unmarshal(body, &object.Results[0].TotalRecovered)
+	json.Unmarshal(body, &object.Results[0].TotalUnresolved)
+	json.Unmarshal(body, &object.Results[0].TotalDeaths)
+	json.Unmarshal(body, &object.Results[0].TotalNewCasesToday)
+	json.Unmarshal(body, &object.Results[0].TotalNewDeathsToday)
+	json.Unmarshal(body, &object.Results[0].TotalActiveCases)
+	json.Unmarshal(body, &object.Results[0].TotalSeriousCases)
+	json.Unmarshal(body, &object.Results[0].TotalAffectedCountries)
+	*/
+	return object
+}
+
+func EndPointGetCountry(body []byte) CountryCases {
+
+	object := CountryCases{}
+	err := json.Unmarshal(body, &object)
+	if err != nil {
+		log.Fatal(err)
+	}
+	/*json.Unmarshal(body, &object.Countrydata[0].Info.Title)
+	json.Unmarshal(body, &object.Countrydata[0].TotalCases)
+	json.Unmarshal(body, &object.Countrydata[0].TotalRecovered)
+	json.Unmarshal(body, &object.Countrydata[0].TotalUnresolved)
+	json.Unmarshal(body, &object.Countrydata[0].TotalDeaths)
+	json.Unmarshal(body, &object.Countrydata[0].TotalNewCasesToday)
+	json.Unmarshal(body, &object.Countrydata[0].TotalNewDeathsToday)
+	json.Unmarshal(body, &object.Countrydata[0].TotalActiveCases)
+	json.Unmarshal(body, &object.Countrydata[0].TotalSeriousCases)
+	json.Unmarshal(body, &object.Countrydata[0].TotalDangerRank)
+	*/
+	return object
+
 }
 
 // ######## Information handling function ########
