@@ -1,7 +1,6 @@
 package API
 
 import (
-	"COVID-19_Analyser/Modules/API/Constants_and_Structs"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -36,8 +35,7 @@ func ReadBody(response *http.Response) []byte { // Reads and gives you body as s
 	return data
 }
 
-func CountryLinkCreator(CountryCode string) string {
-	var address Constants_and_Structs.URL
-	newAddress := address.CountryTotal + CountryCode
+func URLGenerator(address string, CountryCode string) string {
+	newAddress := address + CountryCode
 	return newAddress
 }

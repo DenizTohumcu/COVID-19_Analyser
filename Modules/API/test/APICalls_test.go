@@ -2,6 +2,7 @@ package main
 
 import (
 	"COVID-19_Analyser/Modules/API"
+	"COVID-19_Analyser/Modules/API/Constants_and_Structs"
 	"fmt"
 	"testing"
 )
@@ -22,5 +23,14 @@ func TestReadbody(t *testing.T) { // Testing for body reading function
 	fmt.Println(string(data))
 	if data != nil && token != true { // Waiting for non-empty string and true
 		t.Errorf("The body is empty.")
+	}
+}
+
+func TestURLGenerator(t *testing.T) {
+
+	ReqAddress := API.URLGenerator(Constants_and_Structs.CountryTotal, "TR")
+	fmt.Println(ReqAddress)
+	if ReqAddress != "https://api.thevirustracker.com/free-api?countryTotal=TR" {
+		t.Errorf("Expected URL not generated.")
 	}
 }
