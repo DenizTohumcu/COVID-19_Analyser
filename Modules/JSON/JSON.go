@@ -11,28 +11,42 @@ import (
 // *************** Type Declarations *****************
 
 type WorldCases struct {
-	// End points JSON file of the API
-	totalCases             int `json:"total_cases"`              // Total cases in the world
-	totalRecovered         int `json:"total_recovered"`          // Total recovered cases in the world
-	totalUnresolved        int `json:"total_unresolved"`         // Total unresolved cases in the world
-	totalDeaths            int `json:"total_deaths"`             // Total death cases in the world
-	totalNewCasesToday     int `json:"total_new_cases_today"`    // Total new cases today in the world
-	totalNewDeathsToday    int `json:"total_new_deaths_today"`   // Total new deaths in the world
-	totalActiveCases       int `json:"total_active_cases"`       // Total active cases in the world
-	totalSeriousCases      int `json:"total_serious_cases"`      // Total serious cases in the world
-	totalAffectedCountries int `json:"total_affected_countries"` // Total affected cases in the world
-
+	Results []struct {
+		TotalCases             int `json:"total_cases"`
+		TotalRecovered         int `json:"total_recovered"`
+		TotalUnresolved        int `json:"total_unresolved"`
+		TotalDeaths            int `json:"total_deaths"`
+		TotalNewCasesToday     int `json:"total_new_cases_today"`
+		TotalNewDeathsToday    int `json:"total_new_deaths_today"`
+		TotalActiveCases       int `json:"total_active_cases"`
+		TotalSeriousCases      int `json:"total_serious_cases"`
+		TotalAffectedCountries int `json:"total_affected_countries"`
+		Source                 struct {
+			URL string `json:"url"`
+		} `json:"source"`
+	} `json:"results"`
+	Stat string `json:"stat"`
 }
 
 type CountryCases struct {
-
-	// End points JSON file of the API
-	countryCode string `json:"countrycode"` // Date of information
-	date        string `json:"date"`        // Date of information
-	cases       int    `json:"cases"`       // Number of confirmed cases in a country
-	deaths      int    `json:"deaths"`      // Number of deaths in a country per day
-	recovered   int    `json:"recovered"`   // Number of recovered in a country per
-
+	Countrydata []struct {
+		Info struct {
+			Ourid  int    `json:"ourid"`
+			Title  string `json:"title"`
+			Code   string `json:"code"`
+			Source string `json:"source"`
+		} `json:"info"`
+		TotalCases          int `json:"total_cases"`
+		TotalRecovered      int `json:"total_recovered"`
+		TotalUnresolved     int `json:"total_unresolved"`
+		TotalDeaths         int `json:"total_deaths"`
+		TotalNewCasesToday  int `json:"total_new_cases_today"`
+		TotalNewDeathsToday int `json:"total_new_deaths_today"`
+		TotalActiveCases    int `json:"total_active_cases"`
+		TotalSeriousCases   int `json:"total_serious_cases"`
+		TotalDangerRank     int `json:"total_danger_rank"`
+	} `json:"countrydata"`
+	Stat string `json:"stat"`
 }
 
 type CountryCalculatedValues struct {
