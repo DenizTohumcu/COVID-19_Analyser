@@ -7,7 +7,7 @@ it can suggest decisions to take for better use of capacity and supplies.
 
 ## Contribution Rules but there are rules
 
-### Tabs are for once spaces are forever
+### Tabs are for once, spaces are forever
 
 We try to write clean code and high readability, so spaces !!!
 
@@ -15,7 +15,7 @@ We try to write clean code and high readability, so spaces !!!
 
 We commit every change we do to the code with a smiling face :)
 
-### Commenting about politics is cute and but commenting your code is KAWAII
+### Commenting about politics is cute but commenting your code is KAWAII
 
 Even the simplest comment that is USEFUL is ok.
 
